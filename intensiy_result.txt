@@ -1,0 +1,78 @@
+172.406 center is 1399.99 1536.95
+166.361 center is 1125.27 1535.3
+166.176 center is 1660 1524.5
+182.912 center is 1116.35 1294.4
+166.099 center is 1390.34 1287.16
+148.104 center is 1659.5 1284.5
+141.018 center is 1651.83 1026.63
+143.508 center is 1360.79 1020.58
+215.212 center is 1116 1020
+
+C1:     215.212
+QC2:    143.508
+C6:     141.018
+C2:     182.912
+Sample: 166.099
+C5:     148.104
+C3:     166.361
+QC1:    172.406
+C4:     166.176
+
+Fitted a linear model:
+y=p1*x+p2
+y:mean pixel intensity
+x:log(c),base e
+p1=-14.72
+p2=242.2
+
+Goodness of fit:
+  SSE: 59.9
+  R-square: 0.9456
+  Adjusted R-square: 0.9275
+  RMSE: 4.468
+
+The fitting model can surely be improved upon, keeping in mind that there is no over-fit.
+
+Based on the model:
+x for QC1: 4.74144, concentration=114.6 ng/ml 26.54%
+x for QC2: 6.7046, concentration=816.1515 ng/ml 8.8202%
+
+conc of sample: 175.51 ng/ml
+166.099
+
+Another fitting model: 
+Power model:
+y=a*x^b
+y=conc in ng/ml
+x=intensity 
+  a =   9.272e+26
+  b =      -11.16  
+
+Goodness of fit:
+  SSE: 1.456e+04
+  R-square: 0.9794
+  Adjusted R-square: 0.9742
+  RMSE: 60.34
+
+Q1 conc=101.68  34%
+Q2 conc=787.83  5%
+
+
+Model 3:
+y=(p1x+p2)/(x+q1)=> x=(q1*y-p2)/(p1-y)
+       p1 =       136.4  (116.7, 156.2)
+       p2 =   2.076e+04  (-592, 4.211e+04)
+       q1 =       96.72  (-6.311, 199.8)
+	y= intensity
+	x=conc
+
+Goodness of fit:
+  SSE: 88.11
+  R-square: 0.9752
+  Adjusted R-square: 0.9587
+  RMSE: 5.419
+
+Q1 conc=114.8867 ,26%
+Q2 conc=967.91 ,29%
+
+
