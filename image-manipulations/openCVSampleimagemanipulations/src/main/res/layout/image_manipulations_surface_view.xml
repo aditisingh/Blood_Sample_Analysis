@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"></ImageView>
+    <Button
+        android:layout_height="wrap_content"
+        android:text="Load Picture"
+        android:layout_width="wrap_content"
+        android:id="@+id/buttonLoadPicture"
+        android:layout_weight="0"
+        android:layout_gravity="center"></Button>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:text="Intensities"
+        android:singleLine="false"
+        android:background="#ffeb53"
+        android:autoText="false"
+        android:textColor="#000000"
+        android:layout_weight="0.04" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:id="@+id/textView2"
+        android:layout_height="50dp"
+        android:singleLine="false"
+        android:background="#ffffff"
+        android:autoText="false"
+        android:textColor="#000000"
+        android:layout_weight="0.04"/>
+        <!--android:text="C1: 7878, C2:89.90, C3:678.90,cr:789.90,C5:fvf.fv,C6:678.99, QC1:784.67, QC2:789.45" />-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:text="Concentration predictions"
+        android:singleLine="false"
+        android:background="#ffeb53"
+        android:autoText="false"
+        android:textColor="#000000"
+        android:layout_weight="0.04" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:id="@+id/textView4"
+        android:layout_weight="0.04"
+        android:background="#ffffff"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:text="Concentration Prediction Error"
+        android:singleLine="false"
+        android:background="#ffeb53"
+        android:autoText="false"
+        android:textColor="#000000"
+        android:layout_weight="0.04" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/textView6"
+        android:layout_weight="0.04"
+        android:background="#ffffff"
+        android:textColor="#000000" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:id="@+id/textView7"
+        android:layout_weight="0.04"
+        android:background="#ffeb53"
+        android:textColor="#000000" />
+
+
+</LinearLayout>
