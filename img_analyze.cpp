@@ -10,7 +10,7 @@ int thresh = 100;
 int max_thresh = 255;
 RNG rng(12345);
 
-float pixel_val_avg (Mat image, Point center, int radius)
+float pixel_val_avg (Mat image, Point center, int radius) //function to calculate average pixel intensity, given radii and centers of circle
 {
 float pixel_val_avg=0; int num_points=0;
 for ( int r = 0; r < image.rows; r++ )
@@ -28,38 +28,30 @@ return pixel_val_avg/num_points;
 
 int main( int argc, char** argv )
 {
-	Mat img=imread("image072915B.jpeg");//cropped.jpeg")
+	Mat img=imread("image072915B.jpeg");//replace by the name of image
 	namedWindow("input",CV_WINDOW_NORMAL);
-	imshow("input",img);
+	//imshow("input",img);
 
 	Mat img_smooth;
-	// namedWindow("img_smooth",CV_WINDOW_NORMAL);
-	GaussianBlur(img,img_smooth,Size(3,3),0,0);
-	imshow("img_smooth",img_smooth);
+	//namedWindow("img_smooth",CV_WINDOW_NORMAL);
+	GaussianBlur(img,img_smooth,Size(3,3),0,0);//remove noise
+	//imshow("img_smooth",img_smooth);
    
     Mat output;
-    cv::inRange(img_smooth, cv::Scalar(0,0,200), cv::Scalar(200, 200, 255), output);
+    cv::inRange(img_smooth, cv::Scalar(0,0,200), cv::Scalar(200, 200, 255), output);//rgb based thresholding
 
 Mat canny_output;
   vector<vector<Point> > contours;
   vector<Vec4i> hierarchy;
-
-  /// Detect edges using canny
-  // Canny( img_gray, canny_output, thresh, thresh*2, 3 );
-  medianBlur ( output,output, 3 );
-  // namedWindow("canny_output",CV_WINDOW_NORMAL);
-  // imshow("canny_output",output);
-  /// Find contours
-  // Mat img_final;
+ 
+ //removing salt and pepper noise
+ medianBlur ( output,output, 3 );
   namedWindow("final",CV_WINDOW_NORMAL);
   medianBlur( output,output, 15 );
-  // dilate(output, img_final, 0, Point(-1, -1), 2, 1, 1);
-  imshow("final",output);
-
- Rect bounding_rect;
+ // imshow("final",output);
+ 
+  //finding contours
   findContours( output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
-
-  /// Draw contours
   
   vector<Point2f>center( contours.size() );
   // vector<vector<Point> > contours_poly( contours.size() );
@@ -76,7 +68,7 @@ Mat canny_output;
      {
        double a=contourArea( contours[i],false);  //  Find the area of contour
        avg_area+=a;
-      if(a>largest_area){
+      if(a>largest_area){ //only significant areas used
        largest_area=a;
        largest_contour_index=i; 
      }
@@ -120,13 +112,13 @@ Mat canny_output;
      {
             Scalar color = Scalar( 0,0,0);//rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
 
-        circle( img, Point(x_min,y_min), avg_radius, color, 5, 8, 0 );
+        circle( img, Point(x_min,y_min), avg_radius, color, 5, 8, 0 ); //detecting 9th top-left circle
      }
   /// Show in a window
   center_final[k]=Point(x_min,y_min);
   radius_f[k]=avg_radius;
-  namedWindow( "Contours", CV_WINDOW_NORMAL );
-  imshow( "Contours", img );
+  //namedWindow( "Contours", CV_WINDOW_NORMAL );
+ // imshow( "Contours", img );
 
   float array_intensities[9];
   for (int j=0;j<9;j++)
