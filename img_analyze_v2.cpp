@@ -32,7 +32,7 @@ return pixel_val_avg/num_points;
 
 int main( int argc, char** argv )
 {
-	Mat img=imread("image072915B.jpeg");//cropped.jpeg")
+	Mat img=imread("image072915B.jpeg");//enter the image name
 	namedWindow("input",CV_WINDOW_NORMAL);
 	imshow("input",img);
 
@@ -44,13 +44,13 @@ int main( int argc, char** argv )
     Mat output;
   cvtColor(img_smooth,img_smooth,CV_BGR2HSV);
    Mat low_red_hue_thresh; Mat high_red_hue_thresh;
+   //hsv_based thresholding
    cv::inRange(img_smooth,cv::Scalar(0,50,50),cv::Scalar(10,255,255),low_red_hue_thresh); 
    cv::inRange(img_smooth,cv::Scalar(160,50,50),cv::Scalar(179,255,255),high_red_hue_thresh);
 
     // Mat output;
     addWeighted(low_red_hue_thresh,1.0,high_red_hue_thresh,1.0,0.0,output);
 
-    // cv::inRange(img_smooth, cv::Scalar(0,0,200), cv::Scalar(200, 200, 255), output);
 namedWindow("inRange",CV_WINDOW_NORMAL);
 imshow("inRange",output);
 
@@ -104,11 +104,8 @@ imshow("inRange",output);
      for(int i=0; i<contours.size();i++)
      {
       Scalar color = Scalar( 0,0,0);//rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-      double a=contourArea( contours[i],false); 
-       // cout<<a<<" "<<avg_area<<endl;
-
-       // if(a>=avg_area){ 
-        // cout<<radius[i]<<" "<<center[i].x<<","<<center[i].y<<endl;
+      double a=contourArea( contours[i],false); //consider all contours
+    
         circle( img, center[i], (int)radius[i], color, 5, 8, 0 );
         avg_radius+=(int)radius[i];
         radius_f[k]=radius[i];
@@ -195,7 +192,7 @@ for(int i=0;i<N;i++)
   sum_xy+=x[i]*y[i];
   sum_x_2+=x[i]*x[i];
 }
-
+//linear fit using Least squares
 float slope=(N*sum_xy-sum_x*sum_y)/(N*sum_x_2-(sum_x*sum_x));
 float intercept=(sum_x_2*sum_y-sum_x*sum_xy)/(N*sum_x_2-sum_x*sum_x);
 
